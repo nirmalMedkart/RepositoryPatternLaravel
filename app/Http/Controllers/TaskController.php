@@ -25,15 +25,10 @@ class TaskController extends Controller
     public function create(TaskRequest $request)
     {
         $validation = $request->validated();
-        if ($validation) {
-            $in = $request->all();
-            $task = $this->taskRepository->storeTask($in);
-            return $task;
-        } else {
-            return response()->json([
-                "message"=> $validation->error()
-            ]);
-        }
+        // $validation->messages();
+        $in = $request->all();
+        $task = $this->taskRepository->storeTask($in);
+        return $task;
     }
 
     public function update(TaskRequest $request, $id){

@@ -5,7 +5,6 @@ namespace App\Repositories;
 use App\Repositories\Interfaces\TaskInterface;
 //use Your Model
 use App\Models\Task;
-use JasonGuru\LaravelMakeRepository\Repository\BaseRepository;
 
 /**
  * Class TaskRepository.

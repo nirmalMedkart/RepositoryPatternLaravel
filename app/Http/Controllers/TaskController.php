@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Interfaces\TaskInterface;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use App\Http\Requests\TaskRequest;
 
@@ -23,9 +24,16 @@ class TaskController extends Controller
 
     public function create(TaskRequest $request)
     {
-        $in = $request->all();
-        $task = $this->taskRepository->storeTask($in);
-        return $task;
+        $validation = $request->validated();
+        if ($validation) {
+            $in = $request->all();
+            $task = $this->taskRepository->storeTask($in);
+            return $task;
+        } else {
+            return response()->json([
+                "message"=> $validation->error()
+            ]);
+        }
     }
 
     public function update(TaskRequest $request, $id){

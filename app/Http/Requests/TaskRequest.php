@@ -25,8 +25,8 @@ class TaskRequest extends BaseRequest
     public function rules()
     {
         return [
-            "title"=> "required|min:3|max:10",
-            "desc"=> "required|min:3|max:100",
+            "title"=> "required|string|min:3|max:10",
+            "desc"=> "required|string|min:3|max:100",
         ];
     }
 
@@ -34,7 +34,9 @@ class TaskRequest extends BaseRequest
     {
         return [
             'title.required' => 'Title is required!',
+            'title.string' => 'Title must be string.',
             'desc.required' => 'Description is required!',
+            'desc.string' => 'Description must be string.',
             'title.min' => 'minimum length is 3.',
             'title.max' => 'maximum length is 10.',
             'desc.min' => 'minimum length is 3.',
